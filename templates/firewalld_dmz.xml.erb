@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<zone>
+  <short>DMZ</short>
+  <description>For computers in your demilitarized zone that are publicly-accessible with limited access to your internal network. Only selected incoming connections are accepted.</description>
+<%# never disable ssh for the DMZ zone! unexpected, might accidentally lock yourself out -%>
+  <service name="ssh"/>
+<% unless node['zoo_workstation']['firewalld']['additional_services'].empty? -%>
+<%   node['zoo_workstation']['firewalld']['additional_services'].each do |service| -%>
+  <service name="<%= service -%>"/>
+<%   end -%>
+<% end -%>
+</zone>

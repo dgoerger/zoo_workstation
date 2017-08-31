@@ -1,0 +1,5 @@
+[duosecurity]
+name=Duo Security Repository
+baseurl=http://pkg.duosecurity.com/CentOS/7/$basearch
+enabled=1
+gpgcheck=1

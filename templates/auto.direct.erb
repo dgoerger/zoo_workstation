@@ -1,0 +1,5 @@
+<% unless node['zoo_workstation']['nfs_mounts'].empty? -%>
+<%   node['zoo_workstation']['nfs_mounts'].each do |mount,server| -%>
+<%=    "#{mount} #{server}" %>
+<%   end -%>
+<% end -%>

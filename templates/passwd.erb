@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "Changing password via SMB/Samba..."
+/usr/bin/smbpasswd -r <%= node['zoo_workstation']['sssd']['kerberos_server'] -%> -U $USER

@@ -1,0 +1,4 @@
+### THIS FILE IS MANAGED BY CHEF ###
+
+/- /etc/auto.direct -t 900
++auto.master

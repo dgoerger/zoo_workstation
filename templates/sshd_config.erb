@@ -1,0 +1,49 @@
+### THIS FILE IS MANAGED BY CHEF ###
+
+HostKey /etc/ssh/ssh_host_ed25519_key
+HostKey /etc/ssh/ssh_host_rsa_key
+
+# logging
+SyslogFacility AUTHPRIV
+
+# authentication
+PermitRootLogin no
+MaxAuthTries 3
+PubkeyAuthentication yes
+AuthorizedKeysFile .ssh/authorized_keys
+PermitEmptyPasswords no
+PasswordAuthentication no
+<% if node['zoo_workstation']['duo']['ssh'] -%>
+ChallengeResponseAuthentication yes
+# publickey OR password+duo
+AuthenticationMethods publickey keyboard-interactive:pam
+<% else -%>
+ChallengeResponseAuthentication no
+AuthenticationMethods publickey
+<% end -%>
+GSSAPIAuthentication no
+GSSAPICleanupCredentials yes
+UsePAM yes
+
+# misc
+UseDNS no
+X11Forwarding yes
+
+# accept locale-related environment variables
+AcceptEnv LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES
+AcceptEnv LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT
+AcceptEnv LC_IDENTIFICATION LC_ALL LANGUAGE
+AcceptEnv XMODIFIERS
+
+# override default of no subsystems
+Subsystem sftp /usr/libexec/openssh/sftp-server
+
+<% unless node['zoo_workstation']['openssh']['enable_password_auth_cidr'].empty? -%>
+# enable password-based authentication for connections originating from authorized subnets
+<%   node['zoo_workstation']['openssh']['enable_password_auth_cidr'].each do |cidr| -%>
+Match Address <%= cidr %>
+PasswordAuthentication yes
+# publickey OR password
+AuthenticationMethods publickey password
+<%   end -%>
+<% end -%>

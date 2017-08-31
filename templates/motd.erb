@@ -1,0 +1,10 @@
+/* <%= node['zoo_workstation']['motd']['greeting'] %>
+ *
+ * <%= node['zoo_workstation']['motd']['announcements'] %>
+<% unless node['zoo_workstation']['motd']['errata'].empty? -%>
+ * <%= node['zoo_workstation']['motd']['errata'] %>
+<% end -%>
+<% unless @reboot_cycle.empty? -%>
+ * <%= node['zoo_workstation']['motd']['reboot_cycle_text'] -%> <%= @reboot_cycle %>
+<% end -%>
+ */

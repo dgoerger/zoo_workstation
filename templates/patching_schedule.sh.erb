@@ -1,0 +1,21 @@
+#!/bin/bash
+
+<% unless node['zoo_workstation']['patching']['no_patch_windows'].empty? -%>
+if false; then
+  # quick/dumb way to separate if/elif for the purposes of the loop
+  echo false >/dev/null 2>&1
+<%   node['zoo_workstation']['patching']['no_patch_windows'].each do |month,conditional| -%>
+elif [[ $(date +%m) -eq <%= month -%> ]] && [[ $(date +%d) <%= conditional -%> ]]; then
+  # don't patch
+  echo "AUTOMATIC_PATCHING: Patch/reboot has been deferred on $(hostname) due to the academic schedule." | logger
+<%   end -%>
+else
+  # if we're not in a no-patch window, patch!
+  echo "AUTOMATIC_PATCHING: Patch/reboot initiated on $(hostname) at $(date +%Y%m%d_%H%M)." | logger
+  /usr/local/sbin/dnf-patch-everything
+fi
+<% else -%>
+# no no-patch windows found, so we always patch!
+echo "AUTOMATIC_PATCHING: Patch/reboot initiated on $(hostname) at $(date +%Y%m%d_%H%M)." | logger
+/usr/local/sbin/dnf-patch-everything
+<% end -%>

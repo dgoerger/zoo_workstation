@@ -1,0 +1,25 @@
+filebeat.prospectors:
+- input_type: log
+  paths:
+    <% node['zoo_workstation']['filebeats']['log_paths'].each do |path| %>
+    <%= path %>
+    <% end %>
+  fields:
+    hostname: <%= node['hostname'] %>
+    node_ip_address: <%= node['ipaddress'] %>
+output.logstash:
+  hosts: <%= node['zoo_workstation']['filebeats']['hosts'] %>
+  bulk_max_size: 30
+filebeat.config_dir: /etc/filebeat/conf.d
+logging.level: info
+logging.to_files: true
+logging.to_syslog: false
+logging.files:
+  path: /var/log/filebeat
+  name: filebeat.log
+  keepfiles: 2
+processors:
+- add_cloud_metadata:
+multiline.pattern: '^\[[0-9]{4}-[0-9]{2}-[0-9]{2}'
+multiline.negate: true
+multiline.match: after

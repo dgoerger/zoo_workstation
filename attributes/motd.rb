@@ -1,0 +1,5 @@
+# recommended: limit to 77 char (3char lead in template)  'START                                                                    END'
+default['zoo_workstation']['motd']['greeting']          = '                           Welcome to the Zoo!'
+default['zoo_workstation']['motd']['announcements']     = 'ANNOUNCEMENTS: none'
+default['zoo_workstation']['motd']['errata']            = ''
+default['zoo_workstation']['motd']['reboot_cycle_text'] = 'REBOOT CYCLE: '

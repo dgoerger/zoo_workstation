@@ -1,0 +1,8 @@
+#!/bin/bash
+
+<% unless node['zoo_workstation']['sssd']['ldap_server'].empty? || node['zoo_workstation']['sssd']['ldap_dc'].empty? -%>
+/usr/lib64/nagios/plugins/check_ldaps -H <%= node['zoo_workstation']['sssd']['ldap_server'] -%> -b <%= node['zoo_workstation']['sssd']['ldap_dc'] -%> -S -w 5 -c 20 -t 30
+<% else -%>
+echo "NO LDAP SERVER DEFINED IN CHEF"
+exit 0
+<% end -%>

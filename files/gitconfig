@@ -1,0 +1,14 @@
+[apply]
+    whitespace = fix
+
+[branch]
+    autosetuprebase = always
+
+[color]
+    ui = true
+
+[mergetool]
+    prompt = false
+
+[push]
+    default = simple

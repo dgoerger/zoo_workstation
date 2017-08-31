@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=MATLAB
+Comment=Technical Computing System
+TryExec=/usr/bin/matlab
+Exec=/usr/bin/matlab -desktop -nosplash %F
+Icon=/usr/share/icons/matlab.png
+StartupWMClass=MATLAB
+MimeType=text/x-matlab;

@@ -1,0 +1,40 @@
+### THIS FILE IS MANAGED BY CHEF ###
+
+[sssd]
+config_file_version = 2
+reconnection_retries = 3
+sbus_timeout = 30
+services = nss, pam
+domains = <%= node['zoo_workstation']['sssd']['domain'] %>
+
+[nss]
+filter_users = <%= node['zoo_workstation']['sssd']['filter_users'] %>
+filter_groups = <%= node['zoo_workstation']['sssd']['filter_groups'] %>
+
+[pam]
+
+[domain/<%= node['zoo_workstation']['sssd']['domain'] -%>]
+debug_level = 4
+
+id_provider = ldap
+access_provider = ldap
+
+ldap_schema = rfc2307
+ldap_access_order = expire
+ldap_account_expire_policy = ad
+ldap_force_upper_case_realm = true
+
+ldap_user_search_base = <%= node['zoo_workstation']['sssd']['ldap_dc'] %>
+ldap_group_search_base = <%= node['zoo_workstation']['sssd']['ldap_dc'] %>
+ldap_user_object_class = posixAccount
+ldap_user_name = uid
+ldap_user_fullname = cn
+ldap_user_principal = cn
+ldap_group_object_class = posixGroup
+
+enumerate = false
+cache_credentials = false
+
+ldap_uri = ldaps://<%= node['zoo_workstation']['sssd']['ldap_server'] %>
+ldap_search_base = <%= node['zoo_workstation']['sssd']['ldap_dc'] %>
+ldap_tls_reqcert = allow

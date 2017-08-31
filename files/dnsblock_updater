@@ -1,0 +1,20 @@
+#!/bin/bash
+
+NAME=dnsblock
+TMP=/var/tmp/
+SRC=${NAME}.src
+UPSTREAM_HOSTS_FILE='https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts'
+
+# only proceed if dnsmasq is installed && we can fetch from upstream
+if systemctl status NetworkManager >/dev/null 2>&1; then
+  if curl -Lo ${TMP}/${SRC} ${UPSTREAM_HOSTS_FILE} 2>/dev/null; then
+    # reformat for dnsmasq
+    echo "# ipv4" | tee ${TMP}/${NAME} >/dev/null 2>&1
+    awk '$1 == "0.0.0.0" {print "address=\"/" $2 "/0.0.0.0\""}' ${TMP}/${SRC} | tee --append ${TMP}/${NAME} >/dev/null 2>&1
+    echo "# ipv6" | tee --append ${TMP}/${NAME} >/dev/null 2>&1
+    awk '$1 == "0.0.0.0" {print "address=\"/" $2 "/::\""}' ${TMP}/${SRC} | tee --append ${TMP}/${NAME} >/dev/null 2>&1
+
+    # copy in the new dnsblock policy
+    cp ${TMP}/${NAME} /etc/NetworkManager/dnsmasq.d/${NAME}.conf
+  fi
+fi

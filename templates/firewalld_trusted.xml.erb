@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<zone target="ACCEPT">
+  <short>Trusted</short>
+  <description>All network connections are accepted.</description>
+<% unless node['zoo_workstation']['firewalld']['trusted_ranges'].empty? -%>
+<%   node['zoo_workstation']['firewalld']['trusted_ranges'].each do |range| -%>
+  <source address="<%= range -%>"/>
+<%   end -%>
+<% end -%>
+</zone>

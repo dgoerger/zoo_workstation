@@ -18,6 +18,7 @@ default['zoo_workstation']['utils']['packages'] = [
   'enscript',
   'fdupes',
   'fetchmail',
+  'figlet',
   'finch',
   'finger',
   'fuse-sshfs',

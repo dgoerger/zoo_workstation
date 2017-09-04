@@ -21,7 +21,9 @@ default['zoo_workstation']['gnome']['packages'] = [
   # misc (GNOME is default)
   'abiword',
   'dia',
+  'focuswriter',
   'freemind',
+  'gimagereader-gtk',
   'gobby05',
   'gnome-calendar',
   'gnumeric',

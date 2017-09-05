@@ -35,6 +35,9 @@ ldap_group_object_class = posixGroup
 enumerate = false
 cache_credentials = false
 
+# in case users try to log in with their username in all-caps
+case_sensitive = false
+
 ldap_uri = ldaps://<%= node['zoo_workstation']['sssd']['ldap_server'] %>
 ldap_search_base = <%= node['zoo_workstation']['sssd']['ldap_dc'] %>
 ldap_tls_reqcert = allow

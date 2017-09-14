@@ -11,7 +11,7 @@ end
 execute 'rebuild_authconfig' do
   # use authconfig to manage files instead of managing the zillion configs it manipulates
   # need to explicitly enable krb5, not sure why sssd-krb5 isn't sufficient, doesn't hurt
-  command 'authconfig --enablesssd --enablesssdauth --enablekrb5 --disablecachecreds --disableldap --disableshadow --passalgo=sha512 --disablelocauthorize --enablesysnetauth --disablefingerprint --updateall && systemctl restart sssd'
+  command 'authconfig --enablesssd --enablesssdauth --enablekrb5 --enablemkhomedir --disablecachecreds --disableldap --disableshadow --passalgo=sha512 --disablelocauthorize --enablesysnetauth --disablefingerprint --updateall && systemctl restart sssd'
   action :nothing
 end
 

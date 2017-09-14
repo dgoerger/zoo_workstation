@@ -33,6 +33,12 @@ root    ALL=(ALL)       ALL
 ## don't lock out default admin group "wheel"
 %wheel ALL=(ALL) ALL
 <% end -%>
+<% unless node['zoo_workstation']['sudo']['direct'].empty? -%>
+<%# in case there are sudo directives that are not based on standard group permissions, such as individual users or ALL -%>
+<%   node['zoo_workstation']['sudo']['direct'].each do |entry| -%>
+<%=    "#{entry}" %>
+<%   end -%>
+<% end -%>
 
 # to work around restrictive umask for mortals
 Defaults umask_override

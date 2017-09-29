@@ -51,6 +51,10 @@ package 'cvs' do
   action :install
 end
 
+package 'mercurial' do
+  action :install
+end
+
 package 'rcs' do
   action :install
 end

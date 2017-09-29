@@ -184,6 +184,7 @@ default['zoo_workstation']['devel']['packages'] = [
   'ocaml-lablgl-devel',
   'ocaml-lablgtk-devel',
   'ocaml-labltk-devel',
+  'openblas-devel',
   'opencv-devel',
   'openldap-devel',
   'openmpi-devel',

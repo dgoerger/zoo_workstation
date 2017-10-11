@@ -10,6 +10,7 @@ default['zoo_workstation']['devel']['packages'] = [
   'blas-devel',
   'boost-devel',
   #'botan-devel',# doesn't support openssl 1.1.x as of 20170706
+  'botan2-devel',
   'bzip2-devel',
   'cairo-devel',
   'cairo-gobject-devel',

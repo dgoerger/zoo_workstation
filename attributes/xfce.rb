@@ -26,6 +26,7 @@ default['zoo_workstation']['xfce']['packages'] = [
   'xfce4-settings',
   'xfce4-terminal',
   'xfconf',
+  'xfdesktop',
   'xfwm4',
   'xfwm4-themes'
 ]

@@ -24,7 +24,6 @@ default['zoo_workstation']['python']['packages'] = [
   'python2-wordsegment',
   'python2-yahoo-finance',
   'python3-beautifulsoup4',
-  'python3-botan2',
   'python3-csvkit',
   'python3-Cython',
   'python3-demjson',

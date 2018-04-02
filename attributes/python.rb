@@ -1,6 +1,7 @@
 default['zoo_workstation']['python']['packages'] = [
   'ninja-ide',
   'python-beautifulsoup4',
+  'python2-crypto',
   'python2-csvkit',
   'python2-Cython',
   'python-devel',
@@ -24,6 +25,7 @@ default['zoo_workstation']['python']['packages'] = [
   'python2-wordsegment',
   'python2-yahoo-finance',
   'python3-beautifulsoup4',
+  'python3-crypto',
   'python3-csvkit',
   'python3-Cython',
   'python3-demjson',

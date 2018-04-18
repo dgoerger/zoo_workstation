@@ -11,8 +11,8 @@ default['zoo_workstation']['python']['packages'] = [
   'python-nltk',
   'python2-numpy',
   'python2-pandas',
-  'python-scikit-image',
-  'python-scikit-learn',
+  'python2-scikit-image',
+  'python2-scikit-learn',
   'python2-seaborn',
    # spaCy depends on ftfy, which has dropped python2 support in the main branch; it isn't used by a course, so we omit py2 and stick with upstream
   'python2-pysmell',
